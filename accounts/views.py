@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login # For login
 from django.contrib import messages # For alert messages
 from .forms import CustomUserCreationForm
 # Create your views here.
+
+# register
 def register(request):
     """Register user"""
     if request.method == 'POST':
@@ -18,6 +20,7 @@ def register(request):
     context = {'form': form}
     return render(request, 'accounts/register.html', context)
 
+# Login
 def user_login(request):
     """Login user"""
     if request.method == "POST":
@@ -29,7 +32,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "Welcome {}! You're now logged in.", format(username))
-                return redirect('home')
+                return redirect('accounts:home')
             else:
                 messages.error(request, "Oops! Login error...Invalid username or password")
         else:
@@ -39,5 +42,11 @@ def user_login(request):
     context = {'form': form}
     return render(request, "accounts/login.html", context)
 
+# Home
+def home(request):
+    """Landing page"""
+    user = request.user
+    context = {'user': user}
+    return render(request, "index.html", context)
 
 

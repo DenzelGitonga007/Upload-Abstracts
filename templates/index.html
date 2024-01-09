@@ -1,0 +1,10 @@
+{% extends 'common/base.html' %}
+{%  load static %}
+{% block title %} Home {{ block.super}} {% endblock %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <p><strong>Hello, {{ user.username }}</strong></p>
+    {% endif %}
+    <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
+{% endblock %}
