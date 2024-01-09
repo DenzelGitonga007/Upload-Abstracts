@@ -24,7 +24,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     """Get the user's details for creation"""
     username = models.TextField(max_length=25, unique=True)
-    email = models.EmailField(max_length=50)
+    email = models.EmailField(max_length=50, unique=True)
     phone = models.CharField(max_length=14)
 
     # get the full_name of user 
