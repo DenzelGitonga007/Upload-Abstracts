@@ -1,9 +1,18 @@
 {% extends 'common/base.html' %}
-{%  load static %}
+{% load static %}
 {% block title %} Home {{ block.super}} {% endblock %}
 {% block content %}
 
     {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            {% for abstract in abstracts %}
+                <li>
+                    <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
+                    <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
+                    <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
+                </li>
+            {% endfor %}
+        {% endif %}
         <p><strong>Hello, {{ user.username }}</strong></p>
     {% endif %}
     <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>

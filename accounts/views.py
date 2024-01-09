@@ -47,7 +47,10 @@ def user_login(request):
 def home(request):
     """Landing page"""
     user = request.user
-    abstracts = Abstract.objects.filter(author=user)
+    if user.is_superuser:
+        abstracts = Abstract.objects.all()
+    else:
+        abstracts = Abstract.objects.filter(author=user)
     context = {
         'user': user,
         'abstracts': abstracts
