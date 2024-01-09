@@ -1,15 +1,24 @@
 from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .import models
+from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
     """Custom form for user creation"""
     email = forms.EmailField(required=True)
 
     class Meta:
-        model = models.CustomUser
+        model = CustomUser
         fields = ("username", "email", "password1", "password2")
+
+    # Unique email
+    def clean_email(self):
+        """Ensure email is unique at form level"""
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("This email address is already in use")
+        return email
+
 
     def __init__(self, *args: Any, **kwargs):
         super().__init__(*args, **kwargs)
