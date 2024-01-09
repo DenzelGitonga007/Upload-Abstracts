@@ -37,3 +37,14 @@ def abstract_edit(request, pk):
         form = AbstractForm(instance=abstract)
     context = {'form': form}
     return render(request, "abstracts/edit.html", context)
+
+# Delete
+@login_required
+def abstract_delete(request, pk):
+    abstract = get_object_or_404(Abstract, pk=pk)
+    if request.method == "POST":
+        abstract.delete()
+        messages.success(request, "Abstract deleted successfully...")
+        return redirect("accounts:home")
+    context = {'abstract': abstract}
+    return render(request, "abstracts/delete.html", context)
