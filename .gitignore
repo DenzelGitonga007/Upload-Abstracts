@@ -1,3 +1,5 @@
-env-abstractsys/
+env-abstractsys/ 
 
 *.pyc
+
+media/
