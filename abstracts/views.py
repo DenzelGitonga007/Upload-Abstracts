@@ -17,7 +17,7 @@ def abstract_create(request):
             abstract.author = request.user
             abstract.save()
             messages.success(request, "Abstract uploaded successfully.")
-            return redirect('abstracts:abstracts_list')
+            return redirect('accounts:home')
     else:
         form = AbstractForm()
     context = {'form': form}

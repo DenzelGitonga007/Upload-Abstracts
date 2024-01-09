@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm # Login form
 from django.contrib.auth import authenticate, login # For login
 from django.contrib import messages # For alert messages
 from .forms import CustomUserCreationForm
+from abstracts.models import Abstract # Get the abstracts
 # Create your views here.
 
 # register
@@ -46,7 +47,11 @@ def user_login(request):
 def home(request):
     """Landing page"""
     user = request.user
-    context = {'user': user}
+    abstracts = Abstract.objects.filter(author=user)
+    context = {
+        'user': user,
+        'abstracts': abstracts
+        }
     return render(request, "index.html", context)
 
 

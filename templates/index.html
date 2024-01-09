@@ -7,5 +7,19 @@
         <p><strong>Hello, {{ user.username }}</strong></p>
     {% endif %}
     <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
+    {% if abstracts %}
+        <h3>Your Abstracts:</h3>
+        <ul>
+            {% for abstract in abstracts %}
+                <li>
+
+                    <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
+    {% endif %}
+    <br>
     <button><a href="{% url 'abstracts:upload' %}">Click here to Upload an abstract</a></button>
 {% endblock %}
