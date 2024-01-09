@@ -23,3 +23,17 @@ def abstract_create(request):
     context = {'form': form}
     return render(request, "abstracts/upload.html", context)
         
+# Edit
+@login_required
+def abstract_edit(request, pk):
+    abstract = get_object_or_404(Abstract, pk=pk)
+    if request.method == "POST":
+        form = AbstractForm(request.POST, request.FILES, instance=abstract)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Abstract updated successfully...")
+            return redirect("accounts:home")
+    else:
+        form = AbstractForm(instance=abstract)
+    context = {'form': form}
+    return render(request, "abstracts/edit.html", context)

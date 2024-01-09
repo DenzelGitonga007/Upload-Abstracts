@@ -1,0 +1,10 @@
+{% extends 'common/base.html' %}
+{% block title %} Edit Abstract {{ block.super }} {% endblock %}
+{% block content %}
+    <h3>Edit your abstract</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}
