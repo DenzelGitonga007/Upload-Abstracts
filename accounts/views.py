@@ -47,10 +47,13 @@ def user_login(request):
 def home(request):
     """Landing page"""
     user = request.user
-    if user.is_superuser:
-        abstracts = Abstract.objects.all()
+    if user.is_authenticated and not user.is_anonymous:
+        if user.is_superuser:
+            abstracts = Abstract.objects.all()
+        else:
+            abstracts = Abstract.objects.filter(author=user)
     else:
-        abstracts = Abstract.objects.filter(author=user)
+        abstracts = Abstract.objects.none()  # To handle the anonymous user error
     context = {
         'user': user,
         'abstracts': abstracts
