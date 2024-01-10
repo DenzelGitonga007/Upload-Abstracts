@@ -2,10 +2,32 @@
 {% load static %}
 {% block title %} Abstract Details {{ block.super }} {% endblock %}
 {% block content %}
-    <p>View details for <strong>{{ abstract.title }}</strong> abstract<p>
-    <ul>
-        <li>{{ abstract.file.name }}</li>
-        <li>{{ abstract.description }}</li>
-    </ul>
-
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Title: {{ abstract.title }}</h2>
+                        <div class="mb-3">
+                            <strong>File Name:</strong>
+                            {% if abstract.file %}
+                                {{ abstract.file.name|default:'' }}
+                            {% else %}
+                                No file attached
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Description:</strong> {{ abstract.description }}
+                        </div>
+                        <div class="mb-3">
+                            <strong>Author:</strong> {{ abstract.author }}
+                        </div>
+                        <div class="text-center d-grid">
+                            <a href="{% url 'accounts:home' %}" class="btn btn-block btn-outline-primary">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
