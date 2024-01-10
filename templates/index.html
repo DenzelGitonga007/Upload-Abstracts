@@ -36,23 +36,24 @@
                             {% for abstract in abstracts %}
                                 <div class="col mb-4">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ abstract.title }}</h5>
+                                        <div class="card-body text-dark">
+                                            <h5 class="card-title">Title: {{ abstract.title }}</h5>
                                             <p class="card-text">Author: {{ abstract.author }}</p>
                                             <a href="{{ abstract.file.url }}" download class="btn btn-primary">Download</a>
                                             <div class="btn-group" role="group" aria-label="Abstract Actions">
-                                                <button type="button" class="btn btn-outline-primary"><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
-                                                <button type="button" class="btn btn-outline-warning"><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
-                                                <button type="button" class="btn btn-outline-danger"><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
-                                            </div>
+                                                <a href="{% url 'abstracts:details' abstract.id %}" class="btn btn-outline-info me-2 rounded">Details</a>
+                                                <a href="{% url 'abstracts:edit' abstract.id %}" class="btn btn-outline-warning me-2 rounded">Edit</a>
+                                                <a href="{% url 'abstracts:delete' abstract.id %}" class="btn btn-outline-danger rounded">Delete</a>
+                                            </div>                                                                             
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
                     {% else %}
+                    <hr class="my-4">
                         <!-- If user has no abstract-->
-                        <p class="text-info"><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
+                        <p><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
                     {% endif %}
                 {% endif %}
             {% else %}
