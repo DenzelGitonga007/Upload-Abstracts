@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
+    # Backend
     'accounts', # User auth
     'abstracts', # CRUD
+    # Front-end
     'bootstrap5', # UI/UX
 ]
 

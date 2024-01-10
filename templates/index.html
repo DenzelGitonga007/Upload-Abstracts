@@ -14,15 +14,15 @@
                         {% for abstract in abstracts %}
                             <div class="col mb-4">
                                 <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ abstract.title }}</h5>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title">Title: {{ abstract.title }}</h5>
                                         <p class="card-text">Author: {{ abstract.author }}</p>
                                         <a href="{{ abstract.file.url }}" download class="btn btn-primary">Download</a>
                                         <div class="btn-group" role="group" aria-label="Abstract Actions">
-                                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
-                                            <button type="button" class="btn btn-outline-warning"><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
-                                            <button type="button" class="btn btn-outline-danger"><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
-                                        </div>
+                                            <a href="{% url 'abstracts:details' abstract.id %}" class="btn btn-outline-info me-2 rounded">Details</a>
+                                            <a href="{% url 'abstracts:edit' abstract.id %}" class="btn btn-outline-warning me-2 rounded">Edit</a>
+                                            <a href="{% url 'abstracts:delete' abstract.id %}" class="btn btn-outline-danger rounded">Delete</a>
+                                        </div>                                                                             
                                     </div>
                                 </div>
                             </div>
@@ -66,9 +66,37 @@
         </div>
     </div>
 
-    <div class="container mt-3 bg-success text-center">
-        <div class="jumbotron">
-            <button class="btn btn-lg"><a class="text-white" href="{% url 'abstracts:upload' %}">Click here to Upload an abstract</a></button>
-        </div>        
+    <div class="btn-group" role="group" aria-label="Abstract Actions">
+
     </div>
+    <!-- Hopping animation effect -->
+    <style>
+        @keyframes hop {
+            0%, 20%, 50%, 80%, 100% {
+                transform: scale(1);
+            }
+            40% {
+                transform: scale(1.2);
+            }
+            60% {
+                transform: scale(1.1);
+            }
+        }
+
+        .hop-button {
+            animation: hop 2s infinite;
+        }
+    </style>
+    <!-- Upload button -->
+    <div class="container text-center d-grid">
+        <a href="{% url 'abstracts:upload' %}" class="btn btn-lg btn-success text-white btn-block hop-button">
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            Click here to Upload an abstract
+        </a>
+    </div>
+    <!-- End of the upload button -->
+    <!-- End of hopping animation effect -->
+        
+
+    
 {% endblock %}
