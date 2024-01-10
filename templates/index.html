@@ -1,15 +1,14 @@
 {% extends 'common/base.html' %}
-{% load static %}
 {% block title %} Home {{ block.super}} {% endblock %}
-{% block content %}
+{% block page_content %}
 
     <!-- If user logs in -->
     {% if user.is_authenticated %}
-        <p><a href="{% url 'accounts:logout' %}">Logout</a></p>
         <p><strong>Hello, {{ user.username }}</strong></p>
         <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
         <!-- Check if user is admin-->
         {% if user.is_superuser %}
+        <ul>
             {% for abstract in abstracts %}
                 <li>
                     <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
@@ -18,8 +17,10 @@
                     <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
                 </li>
             {% endfor %}
+        </ul>
         {% endif %}
         <!-- End of checking for admin-->
+
         <!-- Check if user has abstracts -->
         {% if abstracts %}
             <h3>Your Abstracts:</h3>

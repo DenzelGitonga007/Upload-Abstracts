@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block title %} Register {{ block.super }} {% endblock %} 
-{% block content %}
+{% block page_content %}
     <h2>Registration</h2>
     <form method="post">
         {% csrf_token %}
