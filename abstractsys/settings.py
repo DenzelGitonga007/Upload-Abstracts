@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
-    'accounts',
-    'abstracts',
+    'accounts', # User auth
+    'abstracts', # CRUD
+    'bootstrap5', # UI/UX
 ]
 
 MIDDLEWARE = [
