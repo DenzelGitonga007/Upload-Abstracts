@@ -1,4 +1,4 @@
-/* Custom CSS to right-align the Login link */
-.align-end {
-    margin-left: auto;
+/* custom_styles.css */
+.text-white {
+    color: white !important;
 }

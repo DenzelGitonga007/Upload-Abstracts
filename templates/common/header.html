@@ -13,6 +13,7 @@
     <!-- End of bootstrap -->
     <!-- Link the custom css -->
     <link rel="stylesheet" href="{% static 'static/custom_styles.css' %}">
+
 </head>
 <body>
     <header>
@@ -26,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link text-white" href="/">Home</a>
                         </li>
                     </ul>
                     <!-- User auth -->
@@ -36,15 +37,16 @@
                                 <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
                             </li>
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'accounts:login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'accounts:register' %}">Register</a>
+                            </li>
                         {% endif %}
                     </ul>
                     <!-- End of user auth -->
+
                 </div>
             </div>
         </nav>
