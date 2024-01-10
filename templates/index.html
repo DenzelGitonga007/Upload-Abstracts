@@ -2,50 +2,73 @@
 {% block title %} Home {{ block.super}} {% endblock %}
 {% block content %}
 
-    <!-- If user logs in -->
-    {% if user.is_authenticated %}
-        <p><strong>Hello, {{ user.username }}</strong></p>
-        <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
-        <!-- Check if user is admin-->
-        {% if user.is_superuser %}
-        <ul>
-            {% for abstract in abstracts %}
-                <li>
-                    <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
-                    <button><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
-                    <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
-                    <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
-                </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <!-- End of checking for admin-->
+    <div class="container p-5 mt-4 bg-primary text-white rounded">
+        <div class="jumbotron">
+            {% if user.is_authenticated %}
+                <h3 class="display-6">Hello, {{ user.username }}!</h3>
+                <p class="lead">Welcome to Hillary Ngweno Conference 2024 Abstracts System.</p>
+                {% if user.is_superuser %}
+                    <hr class="my-4">
+                    <h3>All Abstracts:</h3>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        {% for abstract in abstracts %}
+                            <div class="col mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ abstract.title }}</h5>
+                                        <p class="card-text">Author: {{ abstract.author }}</p>
+                                        <a href="{{ abstract.file.url }}" download class="btn btn-primary">Download</a>
+                                        <div class="btn-group" role="group" aria-label="Abstract Actions">
+                                            <button type="button" class="btn btn-outline-primary"><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
+                                            <button type="button" class="btn btn-outline-warning"><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
+                                            <button type="button" class="btn btn-outline-danger"><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {% if abstracts %}
+                        <hr class="my-4">
+                        <h3>Your Abstracts:</h3>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {% for abstract in abstracts %}
+                                <div class="col mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ abstract.title }}</h5>
+                                            <p class="card-text">Author: {{ abstract.author }}</p>
+                                            <a href="{{ abstract.file.url }}" download class="btn btn-primary">Download</a>
+                                            <div class="btn-group" role="group" aria-label="Abstract Actions">
+                                                <button type="button" class="btn btn-outline-primary"><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
+                                                <button type="button" class="btn btn-outline-warning"><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
+                                                <button type="button" class="btn btn-outline-danger"><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <!-- If user has no abstract-->
+                        <p class="text-info"><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <h1 class="display-4">Welcome to Hillary Ngweno Conference 2024 Abstracts System</h1>
+                <p class="lead">You can upload your abstracts for the conference on this platform.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}" role="button">Login</a>
+                    <a class="btn btn-success btn-lg" href="{% url 'accounts:register' %}" role="button">Register</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
 
-        <!-- Check if user has abstracts -->
-        {% if abstracts %}
-            <h3>Your Abstracts:</h3>
-            <ul>
-                {% for abstract in abstracts %}
-                    <li>
-                        <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
-                        <button><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
-                        <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
-                        <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %} <!-- If user has no abstract-->
-            <p><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
-        {% endif %}
-        <!-- End of checking if user has abstracts -->
-    <!-- User not logged in -->
-    {% else %}
-        <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
-        <p>You can upload your abstracts for the conference on this platform</p>
-        <p><a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:register' %}">Register</a> </p>
-    
-    {% endif %}
-
-    <br>
-    <button><a href="{% url 'abstracts:upload' %}">Click here to Upload an abstract</a></button>
+    <div class="container mt-3 bg-success text-center">
+        <div class="jumbotron">
+            <button class="btn btn-lg"><a class="text-white" href="{% url 'abstracts:upload' %}">Click here to Upload an abstract</a></button>
+        </div>        
+    </div>
 {% endblock %}
