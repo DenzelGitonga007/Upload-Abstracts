@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
+
+# Registration Form
 class CustomUserCreationForm(UserCreationForm):
     """Custom form for user creation"""
     email = forms.EmailField(required=True)
@@ -24,3 +26,8 @@ class CustomUserCreationForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         # Remove autofocus attribute
         self.fields["username"].widget.attrs.pop("autofocus", None)
+
+# Login Form
+# class CustomLoginForm(forms.ModelForm):
+#     username = forms.CharField(label="username", max_length=100)
+#     password = forms.CharField(label="password", widget=forms.PasswordInput())
