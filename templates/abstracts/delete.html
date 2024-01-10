@@ -1,11 +1,23 @@
 {% extends 'common/base.html' %}
 {% block title %} Delete {{ block.super }} {% endblock %}
 {% block content %}
-    <h3>Delete confirmation</h3>
-    <p><strong>Are you sure you want to delete <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a> ?</strong></p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes</button>
-        <button><a href="{% url 'accounts:home' %}">No</a></button>
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Delete Confirmation</h2>
+                        <p class="text-center"><strong>Are you sure you want to delete <a href="{{ abstract.file.url }}" download>"{{ abstract.file.name }}"</a>?</strong></p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="text-center d-grid gap-2">
+                                <button type="submit" class="btn btn-danger btn-block">Yes</button>
+                                <a href="{% url 'accounts:home' %}" class="btn btn-outline-primary btn-block">No</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
