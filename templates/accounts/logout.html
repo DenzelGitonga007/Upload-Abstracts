@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %} Logout {{ block.super }} {% endblock %}
+{% block content %}
+    <h3>Logout</h3>
+    <p><strong>Are you sure you want to log out</strong></p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+        <button><a href="{% url 'accounts:home' %}">No</a></button>
+    </form>
+{% endblock %}

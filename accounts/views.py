@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm # Login form
-from django.contrib.auth import authenticate, login # For login
+from django.contrib.auth import authenticate, login, logout # For authentication
 from django.contrib import messages # For alert messages
 from .forms import CustomUserCreationForm
 from abstracts.models import Abstract # Get the abstracts
@@ -56,5 +56,15 @@ def home(request):
         'abstracts': abstracts
         }
     return render(request, "index.html", context)
+
+# Logout
+def user_logout(request):
+    """Logout"""
+    if request.method == "POST":
+        logout(request)
+        messages.success(request, "You have successfully logged out...")
+        return redirect("accounts:home")
+    context = {}
+    return render(request, "accounts/logout.html", context)
 
 

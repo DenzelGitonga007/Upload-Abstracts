@@ -3,7 +3,12 @@
 {% block title %} Home {{ block.super}} {% endblock %}
 {% block content %}
 
+    <!-- If user logs in -->
     {% if user.is_authenticated %}
+        <p><a href="{% url 'accounts:logout' %}">Logout</a></p>
+        <p><strong>Hello, {{ user.username }}</strong></p>
+        <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
+        <!-- Check if user is admin-->
         {% if user.is_superuser %}
             {% for abstract in abstracts %}
                 <li>
@@ -13,23 +18,31 @@
                 </li>
             {% endfor %}
         {% endif %}
-        <p><strong>Hello, {{ user.username }}</strong></p>
-    {% endif %}
-    <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
-    {% if abstracts %}
-        <h3>Your Abstracts:</h3>
-        <ul>
-            {% for abstract in abstracts %}
-                <li>
-                    <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
-                    <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
-                    <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
-                </li>
-            {% endfor %}
-        </ul>
+        <!-- End of checking for admin-->
+        <!-- Check if user has abstracts -->
+        {% if abstracts %}
+            <h3>Your Abstracts:</h3>
+            <ul>
+                {% for abstract in abstracts %}
+                    <li>
+                        <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
+                        <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
+                        <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %} <!-- If user has no abstract-->
+            <p><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
+        {% endif %}
+        <!-- End of checking if user has abstracts -->
+    <!-- User not logged in -->
     {% else %}
-        <p><strong>Looks like you haven't uploaded any abstracts yet</strong></p>
+        <h2>Welcome to Hillary Ngweno Conference 2024 Abstracts System</h2>
+        <p>You can upload your abstracts for the conference on this platform</p>
+        <p><a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:register' %}">Register</a> </p>
+    
     {% endif %}
+
     <br>
     <button><a href="{% url 'abstracts:upload' %}">Click here to Upload an abstract</a></button>
 {% endblock %}
