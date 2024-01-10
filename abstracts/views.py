@@ -38,6 +38,14 @@ def abstract_edit(request, pk):
     context = {'form': form}
     return render(request, "abstracts/edit.html", context)
 
+# Details
+@login_required
+def abstract_detail(request, pk):
+    """Get the abstract details"""
+    abstract = get_object_or_404(Abstract, pk=pk)
+    context = {"abstract": abstract}
+    return render(request, "abstracts/details.html", context)
+
 # Delete
 @login_required
 def abstract_delete(request, pk):

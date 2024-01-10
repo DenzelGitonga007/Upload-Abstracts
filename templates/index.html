@@ -13,6 +13,7 @@
             {% for abstract in abstracts %}
                 <li>
                     <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
+                    <button><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
                     <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
                     <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
                 </li>
@@ -26,6 +27,7 @@
                 {% for abstract in abstracts %}
                     <li>
                         <a href="{{ abstract.file.url }}" download>{{ abstract.file.name }}</a>
+                        <button><a href="{% url 'abstracts:details' abstract.id %}">Details</a></button>
                         <button><a href="{% url 'abstracts:edit' abstract.id %}">Edit</a></button>
                         <button><a href="{% url 'abstracts:delete' abstract.id %}">Delete</a></button>
                     </li>

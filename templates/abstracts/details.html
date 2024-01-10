@@ -1,0 +1,11 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %} Abstract Details {{ block.super }} {% endblock %}
+{% block content %}
+    <p>View details for <strong>{{ abstract.title }}</strong> abstract<p>
+    <ul>
+        <li>{{ abstract.file.name }}</li>
+        <li>{{ abstract.description }}</li>
+    </ul>
+
+{% endblock %}
