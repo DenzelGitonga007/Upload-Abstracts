@@ -1,10 +1,35 @@
 {% extends 'common/base.html' %}
+{% load static %}
 {% block title %} Edit Abstract {{ block.super }} {% endblock %}
 {% block content %}
-    <h3>Edit your abstract</h3>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update</button>
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Edit Your Abstract</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_title" class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control" id="id_title" value="{{ form.title.value }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_description" class="form-label">Description</label>
+                                <input type="text" name="description" class="form-control" id="id_description" value="{{ form.description.value }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_file" class="form-label">You can replace '{{ form.file.value }}' with another abstract </label>
+                                <input type="file" class="form-control" name="file" accept="application/pdf, application/msword, text/plain" id="id_file">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success btn-block">Update</button>
+                                <a href="{% url 'accounts:home' %}" class="btn btn-outline-primary btn-block">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
