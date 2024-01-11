@@ -68,24 +68,7 @@
     </div>
 
     <br>
-    <!-- Hopping animation effect -->
-    <style>
-        @keyframes hop {
-            0%, 20%, 50%, 80%, 100% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(1.2);
-            }
-            60% {
-                transform: scale(1.1);
-            }
-        }
 
-        .hop-button {
-            animation: hop 2s infinite;
-        }
-    </style>
     <!-- Upload button -->
     <div class="container text-center d-grid">
         <a href="{% url 'abstracts:upload' %}" class="btn btn-lg btn-success text-white btn-block hop-button">

@@ -12,12 +12,21 @@
 </ul>
 {% endif %}
 
-<script type="text/javascript"> 
-    setTimeout(function () { 
+<script> 
+    // Function to toggle alert visibility at intervals
+    function flashAlert() {
+        $('#alert').fadeTo(500, 0.5).fadeTo(500, 1.0);
+    }
 
-        // Closing the alert 
+    // Set interval to flash alert every 1000 milliseconds (1 second)
+    var flashInterval = setInterval(flashAlert, 1000);
+
+    // Set timeout to close the alert after 35000 milliseconds (35 seconds)
+    setTimeout(function () { 
+        clearInterval(flashInterval);  // Clear the flashing interval
         $('#alert').alert('close'); 
-    }, 5000); 
+    }, 4000); 
 </script>
+
 
 
