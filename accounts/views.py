@@ -14,7 +14,9 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Congratulations! Your account is successfully registered. You can now log in...")
-            return redirect('accounts:login') # Redirect to login page
+            return redirect('accounts:login')
+        else:
+           messages.error(request, "Oops! Something went wrong, account not registered") 
     else:
         form = CustomUserCreationForm()
 
