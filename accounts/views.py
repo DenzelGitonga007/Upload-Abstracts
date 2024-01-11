@@ -34,7 +34,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, "Welcome {}! You're now logged in.", format(username))
+                messages.success(request, "Welcome {}! You're now logged in.".format(user.username))
                 return redirect('accounts:home')
             else:
                 messages.error(request, "Oops! Login error...Invalid username or password")
