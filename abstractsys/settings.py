@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 
+# Deployment db
+import dj_database_url
+
+
 from pathlib import Path
 # For messages
 from django.contrib.messages import constants as messages
@@ -32,12 +36,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v-t5^e66p=4(d(=9)oe)bq(+(#4$^ohj+@!gz8qc1ba5@!ojy@'
+# SECRET_KEY = 'django-insecure-v-t5^e66p=4(d(=9)oe)bq(+(#4$^ohj+@!gz8qc1ba5@!ojy@'
+SECRET_KEY = os.environ.get("SECRET_KEY") # set on deployment
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true" # Check debug status
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ") # Allow multiple hosts
 
 
 # Application definition
@@ -98,6 +105,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES["default"] = dj_database_url.parse("postgres://hnca_sys_db_user:5GaI4gS9AxxrdQiR5SPkKUkmuYJUGPu3@dpg-cmgj48821fec739s24ug-a.oregon-postgres.render.com/hnca_sys_db")
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES["default"] = dj_database_url.parse(database_url)
+
+
 
 
 # Password validation
