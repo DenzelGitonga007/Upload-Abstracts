@@ -44,12 +44,16 @@
                                 <a class="nav-link text-white" href="{% url 'accounts:logout' %}">Logout</a>
                             </li>
                         {% else %}
+                        {% if request.resolver_match.url_name != 'login' %}
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{% url 'accounts:login' %}">Login</a>
                             </li>
+                        {% endif %}
+                        {% if request.resolver_match.url_name != 'register' %}
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{% url 'accounts:register' %}">Register</a>
                             </li>
+                        {% endif %}
                         {% endif %}
                     </ul>
                     <!-- End of user auth -->
