@@ -43,10 +43,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY") # set on deployment
 # DEBUG = True
 DEBUG = os.environ.get("DEBUG", "True").lower() == "true" # Check debug status
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ") # Allow multiple hosts
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS") # Allow multiple hosts
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS",) # Allow multiple hosts
 # Application definition
 
 INSTALLED_APPS = [
@@ -105,11 +105,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES["default"] = dj_database_url.parse("postgres://hnca_sys_db_user:5GaI4gS9AxxrdQiR5SPkKUkmuYJUGPu3@dpg-cmgj48821fec739s24ug-a.oregon-postgres.render.com/hnca_sys_db")
+DATABASES["default"] = dj_database_url.parse("postgres://hnca_sys_db_user:5GaI4gS9AxxrdQiR5SPkKUkmuYJUGPu3@dpg-cmgj48821fec739s24ug-a.oregon-postgres.render.com/hnca_sys_db")
 
-database_url = os.environ.get("DATABASE_URL")
+# database_url = os.environ.get("DATABASE_URL")
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 
