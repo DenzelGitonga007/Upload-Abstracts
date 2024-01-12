@@ -13,7 +13,4 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'abstractsys.settings')
 
-# application = get_wsgi_application()
-
-application = 'abstractsys'
-
+application = get_wsgi_application()
