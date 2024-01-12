@@ -105,9 +105,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES["default"] = dj_database_url.parse("postgres://hnca_sys_db_user:5GaI4gS9AxxrdQiR5SPkKUkmuYJUGPu3@dpg-cmgj48821fec739s24ug-a.oregon-postgres.render.com/hnca_sys_db")
-# database_url = os.environ.get("DATABASE_URL")
-# DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES["default"] = dj_database_url.parse("postgres://hnca_sys_db_user:5GaI4gS9AxxrdQiR5SPkKUkmuYJUGPu3@dpg-cmgj48821fec739s24ug-a.oregon-postgres.render.com/hnca_sys_db")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 
