@@ -6,7 +6,7 @@
         <div class="jumbotron">
             {% if user.is_authenticated %}
                 <h3 class="display-6">Hello, {{ user.get_full_name }}!</h3>
-                <p class="lead">Welcome to Hillary Ngweno Conference 2024 Abstracts System.</p>
+                <p class="lead">Welcome to Hillary Ng'weno Conference 2024 Abstracts System.</p>
                 {% if user.is_superuser %}
                     <hr class="my-4">
                     <h3>All Abstracts:</h3>
@@ -57,7 +57,7 @@
                     {% endif %}
                 {% endif %}
             {% else %}
-                <h1 class="display-4">Welcome to Hillary Ngweno Conference 2024 Abstracts System</h1>
+                <h1 class="display-4">Welcome to Hillary Ng'weno Conference 2024 Abstracts System</h1>
                 <p class="lead">You can upload your abstracts for the conference on this platform.</p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}" role="button">Login</a>
