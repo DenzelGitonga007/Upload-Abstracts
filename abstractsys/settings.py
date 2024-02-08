@@ -45,9 +45,11 @@ SECRET_KEY = 'django-insecure-v-t5^e66p=4(d(=9)oe)bq(+(#4$^ohj+@!gz8qc1ba5@!ojy@
 # Set DEBUG to True during development
 DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
-if os.environ.get("RENDER_ENVIRONMENT") == "True": # If DEBUG is explicitly set to False in the environment variables for render
+# If DEBUG is explicitly set to False in the environment variables for render
+if os.environ.get("RENDER_ENVIRONMENT") == "True":
     DEBUG = False
-# In the render environment, if the "RENDER_ENVIRONMENT" environment variable is set to "True," it explicitly sets DEBUG to False, regardless of the "DEBUG" environment variable.
+
+
 
 ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ") # Allow multiple hosts
