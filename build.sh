@@ -1,4 +1,4 @@
 if [[ $CREATE_SUPERUSER ]];
 then
-  python manage.py createsuperuser --no-input
+  python3 manage.py createsuperuser --no-input
 fi
