@@ -1,3 +1,5 @@
 services:
-  - runtime: python
+  - type: web
+    name: abstractsys
+    runtime: python
     buildCommand: "./build.sh"
